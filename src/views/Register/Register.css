@@ -1,0 +1,9 @@
+.sizeTextbox > input
+{
+    width: calc(50% - 0.25rem);
+}
+
+.password > input
+{
+    width: 100%;
+}

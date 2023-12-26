@@ -13,7 +13,7 @@ function App() {
             {
               routes.map((route,index)=>{
                 return(
-                  <Route key={index} path={route.path} element={route.element} exact={route.exact as boolean}/>
+                  <Route key={index} path={route.path} element={route.element}/>
                 )
               })
             }

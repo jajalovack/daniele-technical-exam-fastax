@@ -12,15 +12,17 @@ const Button = (props: Props) => {
         {
             return 'bg-[#113283] hover:bg-[#1172c3] text-white border-[#113283] border-2 hover:border-[#1172c3]';
         }
-        else if (style && style.toLowerCase()=='secondary')
+        if (style && style.toLowerCase()=='secondary')
+        {
+            return 'bg-white hover:bg-[#1172c3] text-[#113283] hover:text-white border-[#113283] border-2 hover:border-[#1172c3]'
+        }
+        if (style && style.toLowerCase()=='header')
         {
             return 'bg-white hover:bg-[#1172c3] text-[#113283] hover:text-white border-[#113283] border-2 hover:border-[#1172c3]'
         }
 
         return ''
     }
-
-    console.log(props.style)
   
   return (
     <>
