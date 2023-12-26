@@ -1,0 +1,46 @@
+@media (max-width:640px)
+{
+    .dataTable
+    {
+        display: none;
+    }
+}
+
+@media (max-width:768px)
+{
+    .dataTable > *
+    {
+        font-size: calc(1.7vw + 2px);
+    }
+    .dataTable button
+    {
+        width: 7vw;
+        height: 5vw;
+        font-size: calc(1.2vw + 2px);
+        padding: 0.1vw;
+    }
+}
+
+@media (min-width:1024px)
+{
+    .dataTable > *
+    {
+        font-size: calc(0.8vw + 2px);
+    }
+}
+
+@media (min-width:1280px)
+{
+    .dataTable > *
+    {
+        font-size: calc(1vw + 2px);
+    }
+}
+
+@media (max-width:1536px)
+{
+    .dataTable > *
+    {
+        font-size: calc(1vw + 2px);
+    }
+}

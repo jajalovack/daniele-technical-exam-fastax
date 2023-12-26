@@ -5,6 +5,7 @@ import $ from 'jquery'
 import Button from '../../components/Button'
 import Modal from '../../components/Modal'
 import TextInput from '../../components/TextInput'
+import './Dashboard.css'
 
 const Dashboard = () => {
   const [modalDelete,setModalDelete]=useState(false)
@@ -245,7 +246,7 @@ const Dashboard = () => {
               <div className="flex flex-wrap justify-center">
                 <h1 className='text-2xl font-medium mb-4 w-full text-center'>Add user</h1>
                 <form method='post' className='flex justify-center'>
-                <div className='flex flex-wrap gap-2 justify-center w-5/12 sizeTextbox'>
+                <div className='flex flex-wrap gap-2 justify-center w-11/12 md:w-9/12 lg:w-5/12 sizeTextbox'>
                   <TextInput placeholder='First Name' value={inputValue.first_name} onChange={onChangeHandler}/>
                   <TextInput placeholder='Last Name' value={inputValue.last_name} onChange={onChangeHandler}/>
                   <TextInput placeholder='Username' value={inputValue.username} onChange={onChangeHandler}/>
@@ -271,36 +272,37 @@ const Dashboard = () => {
                   </div>
                 </div>
                 </form>
-                <div className='w-full'></div>
-                <Button onClick={validateForm}>Add user</Button>
-                <Button onClick={clearForm} style='secondary'>Reset</Button>
+                <div className='w-full flex justify-center gap-2'>
+                  <Button onClick={validateForm}>Add user</Button>
+                  <Button onClick={clearForm} style='secondary'>Reset</Button>
+                </div>
                 <span id="errorMessage" className='w-full text-center'></span>
               </div>
             :
               <></>
           }
         </div>
-        <div className='flex justify-center w-9/12'>
+        <div className='dataTable flex justify-center w-11/12 lg:w-10/12 xl:w-9/12'>
             <div className="userId w-1/12 text-center font-bold">User ID</div>
-            <div className="branchId w-1/12 text-center font-bold">Branch ID</div>
+            <div className="branchId w-2/12 text-center font-bold">Branch ID</div>
             <div className="fullname w-2/12 text-center font-bold">Full Name</div>
-            <div className="position w-1/12 text-center font-bold">Position</div>
-            <div className="username w-1/12 text-center font-bold">Username</div>
-            <div className="pword w-4/12 text-center font-bold">Password Hash</div>
-            <div className="accountType w-1/12 text-center font-bold">Account Type</div>
+            <div className="position w-3/12 md:w-2/12 lg:w-1/12 text-center font-bold">Position</div>
+            <div className="username w-2/12 lg:w-1/12 text-center font-bold">Username</div>
+            <div className="pword w-2/12 md:w-3/12 lg:w-4/12 text-center font-bold hidden lg:block">Password Hash</div>
+            <div className="accountType w-2/12 text-center font-bold">Account Type</div>
             <div className="removeUser w-1/12"></div>
         </div>
         {
           users.map((user: typeof users, index: number) => {
             return (
-              <div className='flex justify-center items-center w-9/12 mb-2' key={index}>
+              <div className='dataTable flex justify-center items-center w-11/12 lg:w-10/12 xl:9/12 mb-2' key={index}>
                 <div className="userId w-1/12 text-center">{user.id}</div>
                 <div className="branchId w-1/12 text-center">{user.branch_id}</div>
                 <div className="fullname w-2/12 text-center">{user.first_name} {user.last_name}</div>
-                <div className="position w-1/12 text-center">{user.position}</div>
-                <div className="username w-1/12 text-center">{user.username}</div>
-                <div className="pword w-4/12 text-center overflow-x-auto">{user.password}</div>
-                <div className="accountType w-1/12 text-center">{user.account_type==0?'Viewer':'Admin'}</div>
+                <div className="position w-3/12 md:w-2/12 lg:w-1/12 text-center">{user.position}</div>
+                <div className="username w-2/12 lg:w-1/12 text-center">{user.username}</div>
+                <div className="pword w-2/12 md:w-3/12 lg:w-4/12 text-center overflow-x-auto hidden lg:block">{user.password}</div>
+                <div className="accountType w-2/12 text-center">{user.account_type==0?'Viewer':'Admin'}</div>
                 <div className="removeUser w-1/12 text-center">{currentUser.account_type==1?<Button style='danger' onClick={() => {deleteUser(user.id); setUserId(user.id)}}>Delete</Button>:<></>}</div>
               </div>
             )

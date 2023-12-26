@@ -115,9 +115,9 @@ const Login = () => {
   return (
     <>
       <div className="flex flex-wrap justify-center">
-        <h1 className='text-4xl font-medium mb-4 w-full text-center'>Login to Employee Database</h1>
+        <h1 className='text-2xl md:text-4xl font-medium mb-4 w-full text-center'>Login to Employee Database</h1>
         <form method='post' className='flex justify-center'>
-          <div className='flex flex-wrap gap-2 justify-center w-5/12 sizeTextbox'>
+          <div className='flex flex-wrap gap-2 justify-center w-10/12 md:w-9/12 lg:w-7/12 sizeTextbox'>
             <TextInput placeholder='Username' value={inputValue.username} onChange={onChangeHandler}/>
             <TextInput placeholder='Branch ID' value={inputValue.branch_id} onChange={onChangeHandler}/>
             <div className="w-full password">

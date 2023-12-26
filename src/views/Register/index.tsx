@@ -210,9 +210,9 @@ const Register = () => {
   return (
     <>
       <div className="flex flex-wrap justify-center">
-        <h1 className='text-4xl font-medium mb-4 w-full text-center'>Register to Employee Database</h1>
+        <h1 className='text-2xl md:text-4xl font-medium mb-4 w-full text-center'>Register to Employee Database</h1>
         <form method='post' className='flex justify-center'>
-          <div className='flex flex-wrap gap-2 justify-center w-5/12 sizeTextbox'>
+          <div className='flex flex-wrap gap-2 justify-center w-10/12 md:w-9/12 lg:w-5/12 sizeTextbox'>
             <TextInput placeholder='First Name' value={inputValue.first_name} onChange={onChangeHandler}/>
             <TextInput placeholder='Last Name' value={inputValue.last_name} onChange={onChangeHandler}/>
             <TextInput placeholder='Username' value={inputValue.username} onChange={onChangeHandler}/>
