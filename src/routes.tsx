@@ -1,3 +1,4 @@
+import Dashboard from './views/Dashboard'
 import Home from './views/Home/index'
 import Login from './views/Login/index'
 import Register from './views/Register/index'
@@ -15,6 +16,10 @@ const routes = [
     {
         path: '/login',
         element: <Login/>
+    },
+    {
+        path: '/dashboard',
+        element: <Dashboard/>
     },
     {
         path: '*',
