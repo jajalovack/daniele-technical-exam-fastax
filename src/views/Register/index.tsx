@@ -115,7 +115,7 @@ const Register = () => {
 
     if (error)
     {
-      if (!(inputValue.username&&inputValue.branch_id&&inputValue.password&&inputValue.password))
+      if (!(inputValue.username&&inputValue.branch_id&&inputValue.password&&inputValue.confirm_password))
       {
         $('#errorMessage').html('<p class="text-red-500">Please enter all the required fields</p>')
       }
@@ -131,7 +131,6 @@ const Register = () => {
     else
     {
       $('#errorMessage').html('')
-      console.log(inputValue)
       const submitValue = {
         id: users.length==0?1:Number(users.at(-1).id)+1,
         username: inputValue.username,
