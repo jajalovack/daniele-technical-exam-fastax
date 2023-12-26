@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
+import bcrypt from 'bcryptjs'
 import './Register.css'
 import TextInput from '../../components/TextInput'
 import Button from '../../components/Button'
@@ -122,7 +123,7 @@ const Register = () => {
       const submitValue = {
         username: inputValue.username,
         branch_id: inputValue.branch_id,
-        password: inputValue.password,
+        password: bcrypt.hashSync(inputValue.password,10),
         account_type: inputValue.account_type
       }
       users.push(submitValue)

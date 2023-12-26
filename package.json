@@ -12,6 +12,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.1.1",
+    "bcryptjs": "^2.4.3",
     "jquery": "^3.7.1",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
