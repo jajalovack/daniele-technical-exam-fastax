@@ -19,8 +19,11 @@ const Register = () => {
   
   
   const [inputValue, setInputValue] = useState({
+    first_name: '',
+    last_name: '',
     username: '',
     branch_id: '',
+    position: '',
     password: '',
     confirm_password: '',
     account_type: 0
@@ -28,8 +31,11 @@ const Register = () => {
 
   const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValues = {
+      first_name: inputValue.first_name,
+      last_name: inputValue.last_name,
       username: inputValue.username,
       branch_id: inputValue.branch_id,
+      position: inputValue.position,
       password: inputValue.password,
       confirm_password: inputValue.confirm_password,
       account_type: inputValue.account_type
@@ -42,6 +48,18 @@ const Register = () => {
     else if (event.target.placeholder=='Branch ID')
     {
       newValues.branch_id=event.target.value
+    }
+    else if (event.target.placeholder=='First Name')
+    {
+      newValues.first_name=event.target.value
+    }
+    else if (event.target.placeholder=='Last Name')
+    {
+      newValues.last_name=event.target.value
+    }
+    else if (event.target.placeholder=='Position')
+    {
+      newValues.position=event.target.value
     }
     else if (event.target.placeholder=='Password')
     {
@@ -56,8 +74,11 @@ const Register = () => {
 
   const radioToggle = event => {
     const newValues = {
+      first_name: inputValue.first_name,
+      last_name: inputValue.last_name,
       username: inputValue.username,
       branch_id: inputValue.branch_id,
+      position: inputValue.position,
       password: inputValue.password,
       confirm_password: inputValue.confirm_password,
       account_type: inputValue.account_type
@@ -76,6 +97,25 @@ const Register = () => {
   const validateForm = () => {
     let error=false
     const users=localStorage.getItem('users')?JSON.parse(String(localStorage.getItem('users'))):[]
+    
+    if (!inputValue.first_name)
+    {
+      $('#first_name').addClass('border-red-500')
+      error=true
+    }
+    else
+    {
+      $('#first_name').removeClass('border-red-500')
+    }
+    if (!inputValue.last_name)
+    {
+      $('#last_name').addClass('border-red-500')
+      error=true
+    }
+    else
+    {
+      $('#last_name').removeClass('border-red-500')
+    }
     if (!inputValue.username || users.find((x: typeof users)=>x.username==inputValue.username))
     {
       $('#username').addClass('border-red-500')
@@ -93,6 +133,15 @@ const Register = () => {
     else
     {
       $('#branch_id').removeClass('border-red-500')
+    }
+    if (!inputValue.position)
+    {
+      $('#position').addClass('border-red-500')
+      error=true
+    }
+    else
+    {
+      $('#position').removeClass('border-red-500')
     }
     if (!inputValue.password)
     {
@@ -115,7 +164,7 @@ const Register = () => {
 
     if (error)
     {
-      if (!(inputValue.username&&inputValue.branch_id&&inputValue.password&&inputValue.confirm_password))
+      if (!(inputValue.username&&inputValue.first_name&&inputValue.last_name&&inputValue.position&&inputValue.branch_id&&inputValue.password&&inputValue.confirm_password))
       {
         $('#errorMessage').html('<p class="text-red-500">Please enter all the required fields</p>')
       }
@@ -133,8 +182,11 @@ const Register = () => {
       $('#errorMessage').html('')
       const submitValue = {
         id: users.length==0?1:Number(users.at(-1).id)+1,
+        first_name: inputValue.first_name,
+        last_name: inputValue.last_name,
         username: inputValue.username,
         branch_id: inputValue.branch_id,
+        position: inputValue.position,
         password: bcrypt.hashSync(inputValue.password,10),
         account_type: inputValue.account_type
       }
@@ -142,8 +194,12 @@ const Register = () => {
       localStorage.setItem('users',JSON.stringify(users))
       localStorage.setItem('currentUser',JSON.stringify(
         {
+          id: submitValue.id,
+          first_name: submitValue.first_name,
+          last_name: submitValue.last_name,
           username: submitValue.username,
           branch_id: submitValue.branch_id,
+          position: submitValue.position,
           account_type: submitValue.account_type
         }
       ))
@@ -157,8 +213,13 @@ const Register = () => {
         <h1 className='text-4xl font-medium mb-4 w-full text-center'>Register to Employee Database</h1>
         <form method='post' className='flex justify-center'>
           <div className='flex flex-wrap gap-2 justify-center w-5/12 sizeTextbox'>
+            <TextInput placeholder='First Name' value={inputValue.first_name} onChange={onChangeHandler}/>
+            <TextInput placeholder='Last Name' value={inputValue.last_name} onChange={onChangeHandler}/>
             <TextInput placeholder='Username' value={inputValue.username} onChange={onChangeHandler}/>
             <TextInput placeholder='Branch ID' value={inputValue.branch_id} onChange={onChangeHandler}/>
+            <div className="w-full password">
+              <TextInput placeholder='Position' value={inputValue.position} onChange={onChangeHandler}/>
+            </div>
             <div className="w-full password">
               <TextInput placeholder='Password' type='password' value={inputValue.password} onChange={onChangeHandler}/>
             </div>

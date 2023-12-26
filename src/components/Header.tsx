@@ -5,6 +5,7 @@ import Button from "./Button"
 const Header = () => {
   const [isLoggedIn,setIsLoggedIn]=useState(false)
   const navigate = useNavigate()
+  const user=JSON.parse(String(localStorage.getItem('currentUser')))
 
   useEffect(() => {
     checkLoginStatus()
@@ -30,7 +31,7 @@ const Header = () => {
             </div>
           ):(
             <div className="flex items-center gap-4">
-              <h2>({JSON.parse(localStorage.getItem('currentUser')).username})</h2>
+              <h2>{user.username} ({user.account_type==0?'Viewer':'Admin'})</h2>
               <Button style="header" onClick={function() {
                 navigate('/')
                 localStorage.removeItem('currentUser')

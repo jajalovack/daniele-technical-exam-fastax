@@ -20,6 +20,10 @@ const Button = (props: Props) => {
         {
             return 'bg-white hover:bg-[#1172c3] text-[#113283] hover:text-white border-[#113283] border-2 hover:border-[#1172c3]'
         }
+        if (style && style.toLowerCase()=='danger')
+        {
+            return 'bg-[#eb2121] hover:bg-[#9c0202] text-white border-[#eb2121] border-2 hover:border-[#9c0202]';
+        }
 
         return ''
     }

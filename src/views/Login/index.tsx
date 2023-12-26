@@ -1,12 +1,20 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import bcrypt from 'bcryptjs'
 import $ from 'jquery'
 import TextInput from '../../components/TextInput'
 import Button from '../../components/Button'
 
 const Login = () => {
+  const navigate=useNavigate()
+  useEffect(() => {
+    if (localStorage.getItem('currentUser'))
+    {
+      navigate('/dashboard')
+    }
+  },[])
+
   const [inputValue, setInputValue] = useState({
     username: '',
     branch_id: '',
@@ -91,8 +99,12 @@ const Login = () => {
 
       localStorage.setItem('currentUser',JSON.stringify(
         {
+          id: user.id,
+          first_name: user.first_name,
+          last_name: user.last_name,
           username: user.username,
           branch_id: user.branch_id,
+          position: user.position,
           account_type: user.account_type
         }
       ))

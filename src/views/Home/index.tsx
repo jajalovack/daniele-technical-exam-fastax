@@ -1,9 +1,17 @@
 import React from 'react'
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Button from '../../components/Button'
 
 const Home = () => {
   const navigate = useNavigate()
+  useEffect(() => {
+    if (localStorage.getItem('currentUser'))
+    {
+      navigate('/dashboard')
+    }
+  })
+  
   return (
     <>
       <h1 className='text-5xl font-medium mt-4 mb-3 text-center'>Welcome user!</h1>
