@@ -62,7 +62,8 @@ const Register = () => {
 
   const validateForm = () => {
     let error=false
-    if (!inputValue.username)
+    const users=localStorage.getItem('users')?JSON.parse(String(localStorage.getItem('users'))):[]
+    if (!inputValue.username || users.find((x: typeof users)=>x.username==inputValue.username))
     {
       $('#username').addClass('border-red-500')
       error=true
@@ -105,6 +106,10 @@ const Register = () => {
       {
         $('#errorMessage').html('<p class="text-red-500">Please enter all the required fields</p>')
       }
+      else if (users.find((x: typeof users)=>x.username==inputValue.username))
+      {
+        $('#errorMessage').html('<p class="text-red-500">Username is already taken</p>')
+      }
       else if (inputValue.password!=inputValue.confirm_password)
       {
         $('#errorMessage').html('<p class="text-red-500">Passwords do not match</p>')
@@ -113,12 +118,22 @@ const Register = () => {
     else
     {
       $('#errorMessage').html('')
+      console.log(inputValue)
+      const submitValue = {
+        username: inputValue.username,
+        branch_id: inputValue.branch_id,
+        password: inputValue.password,
+        account_type: inputValue.account_type
+      }
+      users.push(submitValue)
+      localStorage.setItem('users',JSON.stringify(users))
     }
   }
 
   return (
     <>
       <div className="flex flex-wrap justify-center">
+        <h1 className='text-4xl font-medium mb-4 w-full text-center'>Register to Employee Database</h1>
         <form method='post' className='flex justify-center'>
           <div className='flex flex-wrap gap-2 justify-center w-5/12 sizeTextbox'>
             <TextInput placeholder='Username' value={inputValue.username} onChange={onChangeHandler}/>
@@ -143,7 +158,7 @@ const Register = () => {
         </form>
         <div className='w-full'></div>
         <Button onClick={validateForm}>Register</Button>
-        <span id="errorMessage"></span>
+        <span id="errorMessage" className='w-full text-center'></span>
       </div>
     </>
   )
