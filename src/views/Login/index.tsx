@@ -13,7 +13,7 @@ const Login = () => {
     {
       navigate('/dashboard')
     }
-  },[])
+  })
 
   const [inputValue, setInputValue] = useState({
     username: '',
