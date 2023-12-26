@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"
 import Button from "./Button"
 
@@ -19,8 +19,8 @@ const Header = () => {
   }
 
   return (
-    <div className='flex bg-[#121277] p-4 text-white font-bold items-center justify-between'>
-        <p onClick={function() {navigate('/')}} className="cursor-pointer">Employee Database</p>
+    <div className='flex bg-[#121277] p-4 text-white items-center justify-between'>
+        <p onClick={function() {navigate('/')}} className="cursor-pointer font-bold">Employee Database</p>
         {
           !isLoggedIn?
           (
@@ -28,11 +28,15 @@ const Header = () => {
               <Button style="header" onClick={function() {navigate('/login')}}>Login</Button>
               <Button style="header" onClick={function() {navigate('/register')}}>Register</Button>
             </div>
-          ):(<Button style="header" onClick={function() {
+          ):(
+            <div className="flex items-center gap-4">
+              <h2>({JSON.parse(localStorage.getItem('currentUser')).username})</h2>
+              <Button style="header" onClick={function() {
                 navigate('/')
                 localStorage.removeItem('currentUser')
                 window.dispatchEvent(new Event('storage'))
-              }}>Logout</Button>)
+              }}>Logout</Button>
+            </div>)
         }
     </div>
   )

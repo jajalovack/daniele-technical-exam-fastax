@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import bcrypt from 'bcryptjs'
 import './Register.css'
@@ -9,6 +9,15 @@ import $ from 'jquery'
 
 const Register = () => {
   const navigate=useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem('currentUser'))
+    {
+      navigate('/dashboard')
+    }
+  },[])
+  
+  
   const [inputValue, setInputValue] = useState({
     username: '',
     branch_id: '',
@@ -16,6 +25,7 @@ const Register = () => {
     confirm_password: '',
     account_type: 0
   })
+
   const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValues = {
       username: inputValue.username,
@@ -138,10 +148,10 @@ const Register = () => {
           account_type: submitValue.account_type
         }
       ))
-      window.location.replace(document.URL.replace('register','dashboard'))
+      window.location.replace(document.URL.replace('/register','/dashboard'))
     }
   }
-  
+
   return (
     <>
       <div className="flex flex-wrap justify-center">
