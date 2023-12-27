@@ -283,7 +283,7 @@ const Dashboard = () => {
           }
         </div>
         <p className="useAnother w-11/12 text-center">You may be viewing in a mobile. For secure viewing, use a computer</p>
-        <div className='dataTable flex justify-center w-11/12 lg:w-10/12 xl:w-9/12 bg-gray-300'>
+        <div className='dataTable flex justify-center w-11/12 lg:w-10/12 xl:w-9/12 bg-gray-300 p-2'>
             <div className="userId w-1/12 text-center font-bold">User ID</div>
             <div className="branchId w-2/12 lg:w-1/12 text-center font-bold">Branch ID</div>
             <div className="fullname w-2/12 text-center font-bold">Full Name</div>

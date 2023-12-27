@@ -1,9 +1,17 @@
-.sizeTextbox > input
-{
-    width: calc(50% - 0.25rem);
-}
-
 .password > input
 {
     width: 100%;
+}
+
+.sizeTextbox > input
+{
+    width: 100%;
+}
+
+@media (min-width:640px)
+{
+    .sizeTextbox > input
+    {
+        width: calc(50% - 0.25rem);
+    }
 }
