@@ -240,7 +240,7 @@ const Dashboard = () => {
       <Modal type='delete' open={modalDelete} onClose={()=>{setModalDelete(false)}} onDelete={()=>{confirmDelete(userId)}}/>
       <Modal type='cant' open={modalCant} onClose={()=>{setModalCant(false)}} onDelete={()=>{}}/>
       <div className="flex flex-wrap justify-center">
-        <div className="flex w-9/12 mt-2 mb-2">
+        <div className="flex w-9/12 mt-2 mb-4">
           {
             currentUser.account_type==1?
               <div className="flex flex-wrap justify-center">
@@ -282,27 +282,28 @@ const Dashboard = () => {
               <></>
           }
         </div>
+        <p className="useAnother w-11/12 text-center">You may be viewing in a mobile. For secure viewing, use a computer</p>
         <div className='dataTable flex justify-center w-11/12 lg:w-10/12 xl:w-9/12'>
             <div className="userId w-1/12 text-center font-bold">User ID</div>
-            <div className="branchId w-2/12 text-center font-bold">Branch ID</div>
+            <div className="branchId w-2/12 lg:w-1/12 text-center font-bold">Branch ID</div>
             <div className="fullname w-2/12 text-center font-bold">Full Name</div>
             <div className="position w-3/12 md:w-2/12 lg:w-1/12 text-center font-bold">Position</div>
             <div className="username w-2/12 lg:w-1/12 text-center font-bold">Username</div>
             <div className="pword w-2/12 md:w-3/12 lg:w-4/12 text-center font-bold hidden lg:block">Password Hash</div>
-            <div className="accountType w-2/12 text-center font-bold">Account Type</div>
+            <div className="accountType w-2/12 lg:1/12 text-center font-bold">Account Type</div>
             <div className="removeUser w-1/12"></div>
         </div>
         {
           users.map((user: typeof users, index: number) => {
             return (
-              <div className='dataTable flex justify-center items-center w-11/12 lg:w-10/12 xl:9/12 mb-2' key={index}>
+              <div className='dataTable flex justify-center items-center w-11/12 lg:w-10/12 xl:w-9/12 mb-2' key={index}>
                 <div className="userId w-1/12 text-center">{user.id}</div>
-                <div className="branchId w-1/12 text-center">{user.branch_id}</div>
+                <div className="branchId w-2/12 lg:w-1/12 text-center">{user.branch_id}</div>
                 <div className="fullname w-2/12 text-center">{user.first_name} {user.last_name}</div>
                 <div className="position w-3/12 md:w-2/12 lg:w-1/12 text-center">{user.position}</div>
                 <div className="username w-2/12 lg:w-1/12 text-center">{user.username}</div>
                 <div className="pword w-2/12 md:w-3/12 lg:w-4/12 text-center overflow-x-auto hidden lg:block">{user.password}</div>
-                <div className="accountType w-2/12 text-center">{user.account_type==0?'Viewer':'Admin'}</div>
+                <div className="accountType w-2/12 lg:1/12 text-center">{user.account_type==0?'Viewer':'Admin'}</div>
                 <div className="removeUser w-1/12 text-center">{currentUser.account_type==1?<Button style='danger' onClick={() => {deleteUser(user.id); setUserId(user.id)}}>Delete</Button>:<></>}</div>
               </div>
             )
