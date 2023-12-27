@@ -50,7 +50,7 @@ const Modal = (props: Props) => {
                       </Dialog.Title>
                       <div className="mt-2">
                         <p className="text-sm text-gray-500">
-                          {props.type=='delete'?"Are you sure you want to delete this user? All of the data will be permanently"+
+                          {props.type=='delete'?"Are you sure you want to delete this user? All of the data will be permanently "+
                           "removed. This action cannot be undone.":'You can instead log out and ask another admin to delete your account or wait for a company advise.'}
                         </p>
                       </div>

@@ -283,7 +283,7 @@ const Dashboard = () => {
           }
         </div>
         <p className="useAnother w-11/12 text-center">You may be viewing in a mobile. For secure viewing, use a computer</p>
-        <div className='dataTable flex justify-center w-11/12 lg:w-10/12 xl:w-9/12'>
+        <div className='dataTable flex justify-center w-11/12 lg:w-10/12 xl:w-9/12 bg-gray-300'>
             <div className="userId w-1/12 text-center font-bold">User ID</div>
             <div className="branchId w-2/12 lg:w-1/12 text-center font-bold">Branch ID</div>
             <div className="fullname w-2/12 text-center font-bold">Full Name</div>
@@ -295,8 +295,9 @@ const Dashboard = () => {
         </div>
         {
           users.map((user: typeof users, index: number) => {
+            const classList='dataTable flex justify-center items-center w-11/12 lg:w-10/12 xl:w-9/12 p-2'
             return (
-              <div className='dataTable flex justify-center items-center w-11/12 lg:w-10/12 xl:w-9/12 mb-2' key={index}>
+              <div className={classList+' '+(index%2==0?'bg-gray-100':'bg-gray-200')} key={index}>
                 <div className="userId w-1/12 text-center">{user.id}</div>
                 <div className="branchId w-2/12 lg:w-1/12 text-center">{user.branch_id}</div>
                 <div className="fullname w-2/12 text-center">{user.first_name} {user.last_name}</div>
